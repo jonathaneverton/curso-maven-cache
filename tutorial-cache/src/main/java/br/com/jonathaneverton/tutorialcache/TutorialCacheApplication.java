@@ -1,5 +1,6 @@
 package br.com.jonathaneverton.tutorialcache;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,19 +23,21 @@ public class TutorialCacheApplication {
 	@Bean
 	ApplicationRunner runner(ProdutoService produtoService) {
 		return args -> {
-			System.out.println("ID 1" + produtoService.getByID(1L));
-			System.out.println("ID 2" + produtoService.getByID(2L));
-			System.out.println("ID 3" + produtoService.getByID(3L));
-			System.out.println("ID 3" + produtoService.getByID(3L));
-			System.out.println("ID 3" + produtoService.getByID(3L));
-			System.out.println("ID 3" + produtoService.getByID(3L));
+			System.out.println("ID 1: " + produtoService.getByID(1L));
+			System.out.println("ID 2: " + produtoService.getByID(2L));
+			System.out.println("ID 3: " + produtoService.getByID(3L));
+			System.out.println("ID 3: " + produtoService.getByID(3L));
+			System.out.println("ID 3: " + produtoService.getByID(3L));
+			System.out.println("ID 3: " + produtoService.getByID(3L));
 			
 		};
 	}
 
 }
 
-record Produto(Long id, String nome) { }
+record Produto(Long id, String nome) implements Serializable {
+
+}
 
 @Service
 class ProdutoService {
@@ -55,7 +58,7 @@ class ProdutoService {
 
 	private void latencia() {
 		try {
-            long time = 5000L;
+            long time = 2000L;
 			Thread.sleep(time);
         } catch (Exception e) {
             // TODO: handle exception
